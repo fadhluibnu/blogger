@@ -18,17 +18,35 @@
     <script>
         module.exports = {
             theme: {
-                fontFamily: {
-                    'inter': ['Inter', 'sans-serif'],
-                    'sans': ['Epilogue', 'sans-serif'],
+                extend: {
+                    colors: {
+                        'regal-blue': '#243c5a',
+                    },
                 }
             }
         }
     </script>
+    <style>
+        /* width */
+        #Postinganterbaru::-webkit-scrollbar {
+            height: 9px;
+        }
+
+        /* Handle */
+        #Postinganterbaru::-webkit-scrollbar-thumb {
+            background: #145bd3;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        #Postinganterbaru::-webkit-scrollbar-thumb:hover {
+            background: #0944a8;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="w-full p-3 md:p-8 py-6 flex items-center justify-between">
+    <div class="w-full px-5 md:px-8 py-4 flex items-center justify-between fixed bg-white z-50 top-0">
         <div class="flex items-center">
             <div class="space-y-1 me-2 bg-slate-100 p-3 rounded-lg md:hidden" onclick="openMenu()">
                 <span class="block w-5 h-0.5 bg-gray-600"></span>
@@ -38,8 +56,8 @@
             <img src="../assets/logo-web.jpg" alt="Logo Website" class="object-contain w-12 h-12 rounded-full">
             <h1 class="ms-3 font-['Epilogue'] font-bold text-2xl text-[#2C57F4] hidden lg:inline-block">Fadhlu Ibnu</h1>
         </div>
-        <ul
-            class="hidden md:flex gap-y-5 md:gap-y-0 gap-x-6 font-['Inter'] text-[#283151] font-medium absolute top-0 right-0 bottom-0 left-0 bg-white items-center justify-center flex-col md:flex-row md:static translate-y-full transition-all duration-300 md:translate-y-0" id="menus">
+        <ul class="hidden md:flex gap-y-5 md:gap-y-0 gap-x-6 font-['Inter'] text-[#283151] font-medium absolute h-screen md:h-auto top-0 right-0 bottom-0 left-0 backdrop-blur-xl bg-white/30 items-center justify-center flex-col md:flex-row md:static translate-y-full transition-all duration-300 md:translate-y-0 z-50"
+            id="menus">
             <li>
                 <a href="">Home</a>
             </li>
@@ -62,27 +80,159 @@
                 <a href="">Kontak</a>
             </li>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-14 h-14 mt-8 md:hidden"  onclick="closeMenu()">
+                stroke="currentColor" class="w-14 h-14 mt-8 md:hidden" onclick="closeMenu()">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </ul>
-        <form action="" class="bg-[#F9FAFE] flex items-center p-3 rounded-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                class="w-4 h-4 text-[#283151]">
-                <path fill-rule="evenodd"
-                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                    clip-rule="evenodd" />
-            </svg>
-            <input type="search"
-                class="w-36 md:w-40 lg:w-auto bg-[#F9FAFE] outline-0 font-['Inter'] ms-2 placeholder:text-sm placeholder:text-[#283151]"
-                placeholder="Search">
+
+        <form>
+            <label for="default-search"
+                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-7 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="search"
+                    class="w-52 md:w-40 lg:w-auto bg-[#F9FAFE] outline-0 font-['Inter'] ms-2 placeholder:text-sm placeholder:text-[#283151] p-3 pl-12 outline outline-blue-500 outline-0 focus:outline-2 focus:outline-blue-500 transition-all duration-200 focus:outline-offset-2 rounded-xl"
+                    placeholder="Search">
+            </div>
         </form>
     </div>
 
-    <div class="w-full">
-        <h1 class="font-['Epilogue'] font-extrabold w-11/12 text-[40px] md:text-6xl md:w-11/12 lg:w-[64rem] text-center m-auto mt-10 md:mt-28 md:leading-normal">Pemrograman Gratis? <span class="text-[#2C57F4]">Ya Bisa!</span> Ayo Bergabung Sekarang</h1>
-        <h3 class="text-center m-auto text-[#1B2239] mt-2 text-lg md:w-2/5">Gak perlu bayar mahal untuk belajar pemrograman, bergabunglah dengan kami!</h3>
+    <div class="w-full flex flex-col items-center relative mt-24">
+        <img src="../assets/decoration-1.png" alt="decoration"
+            class="absolute -z-50 w-52 h-52 object-cover top-8 right-1/4">
+        <div
+            class="absolute left-1/4 bg-blue-600 p-1 px-5 text-white font-['Inter'] font-medium rounded-lg rotate-12 top-2 md:top-14">
+            <p>#css</p>
+        </div>
+        <div
+            class="absolute left-2/4 bg-orange-600 p-1 px-5 text-white font-['Inter'] font-medium rounded-lg rotate-12 top-2 md:top-14">
+            <p>#html</p>
+        </div>
+        <div
+            class="absolute right-2 md:right-1/4 bg-blue-600 p-1 px-5 text-white font-['Inter'] font-medium rounded-lg rotate-12 -z-50 bottom-36 md:bottom-4">
+            <p>#python</p>
+        </div>
+        <h1
+            class="font-['Epilogue'] font-extrabold w-11/12 text-[40px] md:text-6xl md:w-11/12 lg:w-[64rem] text-center m-auto mt-10 md:mt-24 md:leading-normal">
+            Pemrograman Gratis? <span class="text-[#2C57F4]">Ya Bisa!</span> Ayo Bergabung Sekarang</h1>
+        <h3 class="text-center font-['Inter'] m-auto text-[#1B2239] mt-4 text-xl w-11/12 md:w-2/5">
+            <span
+                class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-green-600 relative inline-block">
+                <span class="relative text-white">Gak perlu bayar mahal </span>
+            </span> untuk belajar pemrograman, bergabunglah dengan kami!
+        </h3>
+        <a href="#"
+            class="bg-gradient-to-br from-blue-600 to-blue-500 p-3 rounded-xl mt-7 text-white font-medium text-base font-['Inter'] w-2/4 lg:w-1/6 text-center focus:outline focus:outline-2 focus:outline-blue-600 focus:outline-offset-2 transition-all duration-300">Mulai
+            Belajar</a>
+    </div>
+
+    <div class="flex flex-col xl:flex-row xl:h-[38rem] w-full pb-4 gap-x-8 xl:pr-8 mt-24 lg:mt-52">
+        <div class="w-full relative h-[38rem] xl:h-full overflow-hidden">
+            <div class="lg:pl-8">
+                <h1 class="font-['Epilogue'] font-bold text-3xl text-[#1B2239] pl-5 md:pl-8">Postingan Baru</h1>
+                <p class="font-['Inter'] font-medium text-lg text-green-600 pl-5 md:pl-8">Tutorial Baru, Tips dan Trik
+                    Terkini, Serta Berita Terupdate</p>
+                <!-- flex overflow-x-auto space-x-8 -->
+                <!-- flex xl:gap-x-16 overflow-x-auto lg:w-auto -->
+                <div class="mt-10 flex overflow-x-auto space-x-8 pr-5 md:pr-8 pl-5 md:pl-8 pb-1" id="Postinganterbaru">
+                    <div class="w-[20rem] md:w-[23rem] h-[29rem] bg-white rounded-3xl overflow-hidden flex-shrink-0">
+                        <img src="../assets/contohimage.png" alt="contoh image"
+                            class="w-full h-[12rem] md:h-[16rem] object-cover">
+                        <div class="p-6">
+                            <h1 class="font-bold font-['Epilogue'] text-[#1B2239] text-2xl">Mengapa Python Adalah Bahasa
+                                Pemrograman Terpopuler Saat Ini</h1>
+                            <div class="flex items-center gap-x-2 text-[#1B2239] mt-10 md:mt-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                                </svg>
+                                <span class="font-normal font-['Inter']">Laravel</span>
+                            </div>
+                            <div class="flex items-center gap-x-2 text-[#1B2239] mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                </svg>
+                                <span class="font-normal font-['Inter']">12 November 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-[20rem] md:w-[23rem] h-[29rem] bg-white rounded-3xl overflow-hidden flex-shrink-0">
+                        <img src="../assets/contohimage.png" alt="contoh image"
+                            class="w-full h-[12rem] md:h-[16rem] object-cover">
+                        <div class="p-6">
+                            <h1 class="font-bold font-['Epilogue'] text-[#1B2239] text-2xl">Mengapa Python Adalah Bahasa
+                                Pemrograman Terpopuler Saat Ini</h1>
+                            <div class="flex items-center gap-x-2 text-[#1B2239] mt-10 md:mt-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                                </svg>
+                                <span class="font-normal font-['Inter']">Laravel</span>
+                            </div>
+                            <div class="flex items-center gap-x-2  text-[#1B2239] mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                </svg>
+                                <span class="font-normal font-['Inter']">12 November 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="bg-gradient-to-br from-blue-600 to-blue-500 w-full lg:w-11/12 xl:w-full h-[26rem] absolute bottom-0 -z-50 lg:rounded-e-[50px]">
+            </div>
+        </div>
+        <div
+            class="flex mt-10 xl:mt-0 px-3 md:px-8 xl:px-0 flex-col md:flex-row xl:flex-col lg:w-full xl:w-[28rem] h-[38rem] md:h-[22rem] xl:h-full gap-y-8 md:gap-x-8 xl:gap-y-8">
+            <div class="w-full bg-gradient-to-br from-blue-600 to-blue-500 h-2/3 rounded-3xl p-8">
+                <h1 class="font-semibold font-['Epilogue'] text-2xl text-white">Kategori</h1>
+                <div class="flex gap-1 flex-wrap mt-2">
+                    <h1 class="px-5 py-2 font-['Inter'] font-semibold rounded-lg bg-orange-500 text-white">HTML</h1>
+                    <h1 class="px-5 py-2 font-['Inter'] font-semibold rounded-lg bg-sky-500 text-white">CSS</h1>
+                    <h1 class="px-5 py-2 font-['Inter'] font-semibold rounded-lg bg-yellow-500 text-[#1B2239]">
+                        JavaScript</h1>
+                    <h1 class="px-5 py-2 font-['Inter'] font-semibold rounded-lg bg-green-400 text-[#1B2239]">Programing
+                    </h1>
+                </div>
+            </div>
+            <div class="w-full bg-gradient-to-br from-green-400 to-sky-500 h-1/3 rounded-3xl p-8">
+                <h1 class="font-semibold font-['Epilogue'] text-2xl text-white">Roadmap</h1>
+                <div class="mt-2">
+                    <div
+                        class="flex backdrop-blur-md bg-white/75 w-full justify-between px-3 py-2 rounded-lg font-['Inter'] text-[#1B2239] font-medium items-center text-sm">
+                        <span>Front End Developer</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div
+                        class="flex backdrop-blur-md bg-white/75 w-full justify-between px-3 py-2 rounded-lg font-['Inter'] text-[#1B2239] font-medium items-center text-sm">
+                        <span>Back End Developer</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
