@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -76,7 +76,7 @@
         <ul class="hidden md:flex gap-y-5 md:gap-y-0 gap-x-6 font-['Inter'] text-[#283151] font-medium absolute h-screen md:h-auto top-0 right-0 bottom-0 left-0 backdrop-blur-xl md:backdrop-blur-none bg-white/95 md:bg-white/0 items-center justify-center flex-col md:flex-row md:static translate-y-full transition-all duration-300 md:translate-y-0 z-50"
             id="menus">
             <li>
-                <a href="../home/index.html">Home</a>
+                <a href="../home/index.html" onclick="closeMenu()">Home</a>
             </li>
             <li>
                 <a href="../roadmap/index.html" class="flex items-center"><span>Roadmap</span> <svg
@@ -88,13 +88,13 @@
                 </a>
             </li>
             <li>
-                <a href="">Kategori</a>
+                <a href="../kategori/index.html" onclick="closeMenu()">Kategori</a>
             </li>
             <li>
-                <a href="../tutorial/index.html">Tutorial</a>
+                <a href="../tutorial/index.html" onclick="closeMenu()">Tutorial</a>
             </li>
             <li>
-                <a href="">Kontak</a>
+                <a href="#hubungisaya" onclick="closeMenu()">Kontak</a>
             </li>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-14 h-14 mt-8 md:hidden" onclick="closeMenu()">
@@ -315,7 +315,7 @@
         </div>
     </div>
 
-    <div class="px-5 md:px-0 py-8 pt-6 w-full bg-[#F9FAFE]">
+    <div class="px-5 md:px-0 py-8 pt-6 w-full bg-[#F9FAFE]" id="hubungisaya">
         <div class="md:w-10/12 lg:w-7/12 bg-white rounded-3xl p-10 m-auto">
             <h1 class="font-['Epilogue'] font-bold text-3xl text-[#1B2239]">Hubungi Saya</h1>
             <form action="">
