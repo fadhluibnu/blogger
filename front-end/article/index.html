@@ -1,0 +1,171 @@
+<!doctype html>
+<html class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Home Page</title>
+    <script>
+        module.exports = {
+            theme: {
+                extend: {
+                    colors: {
+                        'regal-blue': '#243c5a',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* width */
+        #Postinganterbaru::-webkit-scrollbar {
+            height: 9px;
+        }
+
+        /* Handle */
+        #Postinganterbaru::-webkit-scrollbar-thumb {
+            background: #145bd3;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        #Postinganterbaru::-webkit-scrollbar-thumb:hover {
+            background: #0944a8;
+        }
+
+        /* width */
+        #post::-webkit-scrollbar {
+            height: 9px;
+        }
+
+        /* Handle */
+        #post::-webkit-scrollbar-thumb {
+            background: #c3cee0;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        #post::-webkit-scrollbar-thumb:hover {
+            background: #a9b3c2;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        class="w-full px-5 md:px-8 py-4 flex items-center justify-between fixed backdrop-blur-xl bg-white/75 z-50 top-0">
+        <div class="flex items-center">
+            <div class="space-y-1 me-2 bg-slate-100 p-3 rounded-lg md:hidden" onclick="openMenu()">
+                <span class="block w-5 h-0.5 bg-gray-600"></span>
+                <span class="block w-5 h-0.5 bg-gray-600"></span>
+                <span class="block w-3 h-0.5 bg-gray-600"></span>
+            </div>
+            <img src="../assets/logo-web.jpg" alt="Logo Website" class="object-contain w-12 h-12 rounded-full">
+            <h1 class="ms-3 font-['Epilogue'] font-bold text-2xl text-[#2C57F4] hidden lg:inline-block">Fadhlu Ibnu</h1>
+        </div>
+        <ul class="hidden md:flex gap-y-5 md:gap-y-0 gap-x-6 font-['Inter'] text-[#283151] font-medium absolute h-screen md:h-auto top-0 right-0 bottom-0 left-0 backdrop-blur-xl md:backdrop-blur-none bg-white/95 md:bg-white/0 items-center justify-center flex-col md:flex-row md:static translate-y-full transition-all duration-300 md:translate-y-0 z-50"
+            id="menus">
+            <li>
+                <a href="../index.html" onclick="closeMenu()">Home</a>
+            </li>
+            <li>
+                <a href="../roadmap/index.html" class="flex items-center"><span>Roadmap</span> <svg
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="../kategori/index.html" onclick="closeMenu()">Kategori</a>
+            </li>
+            <li>
+                <a href="../tutorial/index.html" onclick="closeMenu()">Tutorial</a>
+            </li>
+            <li>
+                <a href="../index.html/#hubungisaya" onclick="closeMenu()">Kontak</a>
+            </li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-14 h-14 mt-8 md:hidden" onclick="closeMenu()">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </ul>
+
+        <form>
+            <label for="default-search"
+                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-7 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="search"
+                    class="w-52 md:w-40 lg:w-auto bg-[#F9FAFE] outline-0 font-['Inter'] ms-2 placeholder:text-sm placeholder:text-[#283151] p-3 pl-12 outline outline-blue-500 outline-0 focus:outline-2 focus:outline-blue-500 transition-all duration-200 focus:outline-offset-2 rounded-xl"
+                    placeholder="Search">
+            </div>
+        </form>
+    </div>
+    
+    <div class="mb-52">
+        <div class="h-[25rem] absolute top-0 left-0 right-0 bg-black -z-50">
+            <div class="w-full h-full backdrop-blur-md bg-white/30 absolute"></div>
+            <div class="w-full h-full bg-gradient-to-b from-transparent to-white absolute"></div>
+            <img src="../assets/image 1.png" alt="" class="w-full h-full object-cover object-center">
+        </div>
+        <div class="mt-52">
+            <h1 class="font-['Epilogue'] font-bold text-5xl text-[#1B2239] w-[54rem] text-center m-auto leading-tight">DigitalOcean expands backup capabilities with acquisition of SnapShooter</h1>
+            <p class="font-['Inter'] text-base text-[#41485F] m-auto text-center mt-2">22 Januari 2022</p>
+        </div>
+    </div>
+
+    <footer class="w-full bg-[#1B2239] p-8">
+        <div class="flex flex-col md:flex-row md:gap-x-32 lg:gap-x-44">
+            <div class="flex items-start flex-col md:flex-row md:items-center md:space-x-4">
+                <img src="../assets/logo-web 2.png" alt="Logo Website" class="object-cover w-28 h-28 rounded-full">
+                <h1 class="font-semibold font-['Epilogue'] text-2xl text-white w-[17rem] mt-4 md:mt-0">Pemrograman
+                    Gratis? Ya Bisa! Ayo Bergabung Sekarang!</h1>
+            </div>
+            <div class="flex mt-10 md:mt-0 gap-x-32 lg:gap-x-44">
+                <div class="text-white font-['Epilogue']">
+                    <h3 class="font-semibold">MENU</h3>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Roadmap</a></li>
+                        <li><a href="">Kategori</a></li>
+                        <li><a href="">Hubungi Saya</a></li>
+                    </ul>
+                </div>
+                <div class="text-white font-['Epilogue']">
+                    <h3 class="font-semibold">Social Media</h3>
+                    <ul>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Youtube Channel</a></li>
+                        <li><a href="">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-10/12 m-auto place-items-center py-8 pb-0 border-t border-[#43495E] mt-10">
+            <p class="text-center text-white font-['Epilogue']">&#169; 2023 - <strong>Fadhlu Ibnu</strong></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
