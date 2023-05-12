@@ -20,4 +20,8 @@ class Post extends Model
         'body',
         'views'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'author');
+    }
 }
