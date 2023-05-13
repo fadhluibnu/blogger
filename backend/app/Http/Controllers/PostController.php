@@ -124,8 +124,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $getDataPost = Post::where('slug', $slug)->first();
+        $destroyPost = $getDataPost ? $getDataPost->delete() : false;
+        
+        return $getDataPost == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($destroyPost ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed'
+        ], 400));
     }
 }
