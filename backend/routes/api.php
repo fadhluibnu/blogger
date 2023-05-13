@@ -33,8 +33,12 @@ Route::middleware('auth:sanctum')->group(function(){
     // post controller
     Route::post('/posts/{slug}', [PostController::class, 'update'])->name('updatePost');
     Route::resource('/posts', PostController::class)->except('index', 'show', 'update');
+
+    // roadmap controller
+    Route::resource('/roadmap', RoadmapController::class)->except('index', 'show');
 });
 
+// route 404 not found
 Route::fallback(function(){
     return response()->json([
         'status' => 404,

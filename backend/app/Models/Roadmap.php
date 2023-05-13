@@ -13,5 +13,6 @@ class Roadmap extends Model
         'title',
         'image',
         'description',
+        'slug'
     ];
 }

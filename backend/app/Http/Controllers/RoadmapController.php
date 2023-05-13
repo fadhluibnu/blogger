@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreRoadmapRequest;
 use App\Models\Roadmap;
 use Illuminate\Http\Request;
 
@@ -38,9 +40,21 @@ class RoadmapController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoadmapRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['image'] = $request->file('image')->store('image_roadmap');
+
+        $storeRoadmap = Roadmap::create($validated);
+        return $storeRoadmap ? response()->json([
+            'status' => 200,
+            'message' => 'uploaded',
+            'data' => $storeRoadmap
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed',
+            'data' => null
+        ], 400);
     }
 
     /**
