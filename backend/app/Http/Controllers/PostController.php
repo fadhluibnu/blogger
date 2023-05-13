@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,8 @@ class PostController extends Controller
 
         return response()->json([
             'status' => 200,
-            'data' => $getAllPost->isEmpty() ? null : $getAllPost 
-        ],200);
+            'data' => $getAllPost->isEmpty() ? null : $getAllPost
+        ], 200);
     }
 
     /**
@@ -43,7 +44,7 @@ class PostController extends Controller
     {
         $validated = $request->validated();
         $validated['image_cover'] = $request->file('image_cover')->store('image_post');
-        
+
         $storePost = Post::create($validated);
         return $storePost ? response()->json([
             'status' => 200,
@@ -94,9 +95,27 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $slug)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('image_cover')) {
+            $validated['image_cover'] = $request->file('image_cover')->store('image_post');
+        }
+        
+        $getDataPost = Post::where('slug', $slug)->first();
+        $updatePost = $getDataPost ? $getDataPost->update($validated) : false;
+
+
+        return $getDataPost == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($updatePost ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 500,
+            'message' => 'failed'
+        ], 500));
     }
 
     /**

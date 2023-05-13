@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
     // post controller
-    Route::resource('/posts', PostController::class)->except('index', 'show');
+    Route::post('/posts/{slug}', [PostController::class, 'update'])->name('updatePost');
+    Route::resource('/posts', PostController::class)->except('index', 'show', 'update');
 });
 
 Route::fallback(function(){
