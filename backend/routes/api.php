@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoadmapController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -19,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-// get all post
+// get post
 Route::get('/posts', [PostController::class, 'index'])->name('getAllPost');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('getPostsBySlug');
+
+// get roadmap
+Route::get('/roadmap', [RoadmapController::class, 'index'])->name('getAllRoadmap'); 
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
