@@ -126,8 +126,20 @@ class RoadmapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $getDataRoadmap = Roadmap::where('slug', $slug)->first();
+        $destroyRoadmap = $getDataRoadmap ? $getDataRoadmap->delete() : false;
+        
+        return $getDataRoadmap == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($destroyRoadmap ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed'
+        ], 400));
     }
 }

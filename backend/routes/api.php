@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::fallback(function(){
     return response()->json([
         'status' => 404,
-        'message' => 'not found',
+        'message' => 'route not found',
+        'detail' => 'You may not be authenticated or the route may not exist in this program'
     ], 404);
 });
