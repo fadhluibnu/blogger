@@ -26,6 +26,7 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('getPost
 
 // get roadmap
 Route::get('/roadmap', [RoadmapController::class, 'index'])->name('getAllRoadmap'); 
+Route::get('/roadmap/{slug}', [RoadmapController::class, 'show'])->name('getRoadmapBySlug');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');

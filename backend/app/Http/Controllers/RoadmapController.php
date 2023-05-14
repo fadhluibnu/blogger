@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\StoreRoadmapRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Roadmap;
 use Illuminate\Http\Request;
 
@@ -63,9 +64,19 @@ class RoadmapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $getRoadmapBySlug = Roadmap::where('slug', $slug)->first();
+
+        return $getRoadmapBySlug ? response()->json([
+            'status' => 200,
+            'message' => 'succes',
+            'data' => $getRoadmapBySlug
+        ], 200) : response()->json([
+            'status' => 404,
+            'message' => 'not found',
+            'data' => null
+        ], 404);
     }
 
     /**
@@ -86,9 +97,27 @@ class RoadmapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('image_roadmap');
+        }
+
+        $getRoadmap = Roadmap::where('slug', $id)->first();
+
+        $updateRoadmap = $getRoadmap ? $getRoadmap->update($validated) : false;
+
+        return $getRoadmap == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($updateRoadmap ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 500,
+            'message' => 'failed'
+        ], 500));
     }
 
     /**
