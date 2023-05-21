@@ -127,8 +127,20 @@ class TutorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $getTutorial = Tutorial::where('slug', $slug)->first();
+        $destroyTutorial = $getTutorial ? $getTutorial->delete() : false;
+        
+        return $getTutorial == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($destroyTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed'
+        ], 400));
     }
 }

@@ -17,7 +17,7 @@ class RoadmapController extends Controller
      */
     public function index()
     {
-        $getAllRoadmap = Roadmap::all()->load('tutorial');
+        $getAllRoadmap = Roadmap::all()->load('tutorials');
 
         return response()->json([
             'status' => 200,
@@ -66,7 +66,7 @@ class RoadmapController extends Controller
      */
     public function show($slug)
     {
-        $getRoadmapBySlug = Roadmap::where('slug', $slug)->first();
+        $getRoadmapBySlug = Roadmap::where('slug', $slug)->first()->load('tutorials');
 
         return $getRoadmapBySlug ? response()->json([
             'status' => 200,

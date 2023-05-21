@@ -18,6 +18,6 @@ class Tutorial extends Model
 
     public function roadmap()
     {
-        $this->belongsTo(Roadmap::class, 'roadmap_id');
+        return $this->belongsTo(Roadmap::class, 'roadmap_id');
     }
 }
