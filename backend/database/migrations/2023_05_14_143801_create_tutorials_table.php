@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('slug')->unique();
-            $table->foreignId('roadmap_id');
+            $table->foreignId('roadmap_id')->nullable();
             $table->text('description');
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTutorialRequest;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class TutorialController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,9 +39,22 @@ class TutorialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTutorialRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['image'] = $request->file('image')->store('image_tutorial');
+
+        $storeTutorial = Tutorial::create($validated);
+        
+        return $storeTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success',
+            'data' => $storeTutorial
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed',
+            'data' => null
+        ], 400);
     }
 
     /**
