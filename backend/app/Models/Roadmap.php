@@ -15,4 +15,8 @@ class Roadmap extends Model
         'description',
         'slug'
     ];
+    public function tutorials()
+    {
+        $this->hasMany(Tutorial::class, 'roadmap_id');
+    }
 }

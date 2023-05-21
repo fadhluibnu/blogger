@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Tutorial extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'image',
+        'slug',
+        'roadmap_id',
+        'description'
+    ];
+
+    public function roadmap()
+    {
+        $this->belongsTo(Roadmap::class, 'roadmap_id');
+    }
 }
