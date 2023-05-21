@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTutorialRequest extends FormRequest
+class UpdateTutorialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +24,17 @@ class StoreTutorialRequest extends FormRequest
      */
     public function rules()
     {
+        // return $this->tutorials;
         return [
-            'title' => 'required',
-            'image' => 'required',
-            'slug' => 'required|unique:tutorials,slug',
+            'title' => 'sometimes|required',
+            'image' => 'sometimes|required',
+            'slug' => [
+                'sometimes', 
+                'required', 
+                Rule::unique('tutorials')->where(fn ($query) => $query->where('slug', '!=', $this->slug)),
+            ],
             'roadmap_id' => 'sometimes',
-            'description' => 'required'
+            'description' => 'sometimes|required'
         ];
     }
 }

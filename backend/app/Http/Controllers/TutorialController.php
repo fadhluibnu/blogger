@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTutorialRequest;
+use App\Http\Requests\UpdateTutorialRequest;
 use App\Models\Roadmap;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
@@ -97,9 +98,27 @@ class TutorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTutorialRequest $request, $slug)
     {
-        //
+        // return $request->all();
+        $validated = $request->validated();
+        $request->file('image') ? $validated['image'] = $request->file('image')->store('image_roadmap') : false;
+
+        $getTutorial = Tutorial::where('slug', $slug)->first();
+
+        $updateTutorial = $getTutorial ? $getTutorial->update($validated) : false;
+
+        return $getTutorial == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($updateTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 500,
+            'message' => 'failed'
+        ], 500));
+
     }
 
     /**
