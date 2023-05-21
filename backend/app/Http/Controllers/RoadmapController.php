@@ -17,7 +17,7 @@ class RoadmapController extends Controller
      */
     public function index()
     {
-        $getAllRoadmap = Roadmap::all();
+        $getAllRoadmap = Roadmap::all()->load('tutorial');
 
         return response()->json([
             'status' => 200,

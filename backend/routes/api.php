@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoadmapController;
+use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -28,6 +29,9 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('getPost
 Route::get('/roadmap', [RoadmapController::class, 'index'])->name('getAllRoadmap'); 
 Route::get('/roadmap/{slug}', [RoadmapController::class, 'show'])->name('getRoadmapBySlug');
 
+// get tutorial
+Route::get('/tutorial', [TutorialController::class, 'index'])->name('getAllTutorial');
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -37,6 +41,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // roadmap controller
     Route::resource('/roadmap', RoadmapController::class)->except('index', 'show');
+
+    // tutorial controller
+    Route::resource('/tutorial', TutorialController::class)->except('index', 'show');
 });
 
 // route 404 not found
