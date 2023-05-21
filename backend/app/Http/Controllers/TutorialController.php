@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTutorialRequest;
+use App\Models\Roadmap;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
 
@@ -63,9 +64,19 @@ class TutorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $getTutorialBySlug = Tutorial::where('slug', $slug)->first();
+
+        return $getTutorialBySlug ? response()->json([
+            'status' => 200,
+            'message' => 'succes',
+            'data' => $getTutorialBySlug
+        ], 200) : response()->json([
+            'status' => 404,
+            'message' => 'not found',
+            'data' => null
+        ], 404);
     }
 
     /**

@@ -5,6 +5,7 @@ use App\Http\Controllers\RoadmapController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::get('/roadmap/{slug}', [RoadmapController::class, 'show'])->name('getRoad
 
 // get tutorial
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('getAllTutorial');
+Route::get('/tutorial/{slug}', [TutorialController::class, 'show'])->name('getTutorialBySlug');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
