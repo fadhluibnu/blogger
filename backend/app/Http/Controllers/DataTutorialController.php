@@ -111,6 +111,18 @@ class DataTutorialController extends Controller
      */
     public function destroy($id)
     {
+        $getDataTutorial = DataTutorial::where('id', $id)->first();
+        $destroyDataTutorial = $getDataTutorial ? $getDataTutorial->delete() : false;
         
+        return $getDataTutorial == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($destroyDataTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed'
+        ], 400));
     }
 }
