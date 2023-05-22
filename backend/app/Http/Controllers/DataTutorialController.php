@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDataTutorialRequest;
+use App\Http\Requests\UpdateDataTutorialRequest;
 use App\Models\DataTutorial;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DataTutorialController extends Controller
      */
     public function index()
     {
-        $getAllDataTutorial = DataTutorial::all();
+        $getAllDataTutorial = DataTutorial::all()->load('tutorials', 'post');
 
         return response()->json([
             'status' => 200,
@@ -83,9 +84,23 @@ class DataTutorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDataTutorialRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $getDataTutorial = DataTutorial::where('id', $id)->first();
+
+        $updateDataTutorial = $getDataTutorial ? $getDataTutorial->update($validated) : false;
+
+        return $getDataTutorial == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($updateDataTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 500,
+            'message' => 'failed'
+        ], 500));
     }
 
     /**
@@ -96,6 +111,6 @@ class DataTutorialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

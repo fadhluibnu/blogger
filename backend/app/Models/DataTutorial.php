@@ -15,7 +15,7 @@ class DataTutorial extends Model
     ];
     public function post()
     {
-        return $this->hasOne(Post::class, 'id_post');
+        return $this->belongsTo(Post::class, 'id_post');
     }
     public function tutorials()
     {
