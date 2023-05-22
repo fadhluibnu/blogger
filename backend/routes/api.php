@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\DataTutorialController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoadmapController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\UserController;
+use App\Models\DataTutorial;
 use App\Models\Post;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
@@ -33,6 +35,9 @@ Route::get('/roadmap/{slug}', [RoadmapController::class, 'show'])->name('getRoad
 // get tutorial
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('getAllTutorial');
 Route::get('/tutorial/{slug}', [TutorialController::class, 'show'])->name('getTutorialBySlug');
+
+// get data tutorial
+Route::get('/datatutorial', [DataTutorialController::class, 'index'])->name('getAllDataTutorial');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');

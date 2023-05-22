@@ -17,7 +17,7 @@ class TutorialController extends Controller
      */
     public function index()
     {
-        $getAllTutorial = Tutorial::all();
+        $getAllTutorial = Tutorial::all()->load('dataTutorial');
 
         return response()->json([
             'status' => 200,
