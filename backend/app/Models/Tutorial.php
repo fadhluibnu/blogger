@@ -20,4 +20,8 @@ class Tutorial extends Model
     {
         return $this->belongsTo(Roadmap::class, 'roadmap_id');
     }
+    public function dataTutorial()
+    {
+        return $this->hasMany(DataTutorial::class, 'id_playlist');
+    }
 }

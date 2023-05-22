@@ -24,4 +24,8 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'author');
     }
+    public function dataTutorial()
+    {
+        return $this->belongsTo(DataTutorial::class, 'id_post');
+    }
 }
