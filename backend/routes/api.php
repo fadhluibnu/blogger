@@ -51,6 +51,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // tutorial controller
     Route::resource('/tutorial', TutorialController::class)->except('index', 'show');
+
+    // data tutorial roadmap
+    Route::resource('/datatutorial', DataTutorialController::class)->except('index', 'show');
 });
 
 // route 404 not found

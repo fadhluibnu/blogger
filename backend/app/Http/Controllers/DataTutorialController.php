@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDataTutorialRequest;
 use App\Models\DataTutorial;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,19 @@ class DataTutorialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDataTutorialRequest $request)
     {
-        //
+        $storeDataTutorial = DataTutorial::create($request->validated());
+        
+        return $storeDataTutorial ? response()->json([
+            'status' => 200,
+            'message' => 'success',
+            'data' => $storeDataTutorial
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'failed',
+            'data' => null
+        ], 400);
     }
 
     /**
