@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
+use App\Http\Resources\TutorialResource;
 use App\Models\Roadmap;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class TutorialController extends Controller
      */
     public function index()
     {
-        $getAllTutorial = Tutorial::all()->load('dataTutorial');
-
+        // return Tutorial::all();
+        $getAllTutorial = TutorialResource::collection(Tutorial::all()->load('dataTutorial'));
         return response()->json([
             'status' => 200,
             'data' => $getAllTutorial->isEmpty() ? null : $getAllTutorial
@@ -67,7 +68,7 @@ class TutorialController extends Controller
      */
     public function show($slug)
     {
-        $getTutorialBySlug = Tutorial::where('slug', $slug)->first();
+        $getTutorialBySlug = new TutorialResource(Tutorial::where('slug', $slug)->first()->load('dataTutorial'));
 
         return $getTutorialBySlug ? response()->json([
             'status' => 200,
