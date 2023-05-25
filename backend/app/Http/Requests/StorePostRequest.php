@@ -7,12 +7,6 @@ use Illuminate\Support\Str;
 
 class StorePostRequest extends FormRequest
 {
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'slug' => Str::slug($this->title),
-        ]);
-    }
 
     /**
      * Determine if the user is authorized to make this request.

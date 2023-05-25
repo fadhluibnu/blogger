@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRoadmapRequest extends FormRequest
 {
@@ -27,7 +28,11 @@ class UpdateRoadmapRequest extends FormRequest
             'title' => 'sometimes|required',
             'image' => 'sometimes|required',
             'description' => 'sometimes|required',
-            'slug' => 'sometimes|required|unique:roadmaps,slug'
+            'slug' => [
+                'sometimes',
+                'required',
+                Rule::unique('roadmaps')->where(fn ($query) => $query->where('slug', '!=', $this->slug)),
+            ]
         ];
     }
 }

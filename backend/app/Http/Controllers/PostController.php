@@ -17,7 +17,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        // return Post::all()->load('user', 'dataTutorial.tutorials.dataTutorial.post');
         $getAllPost = PostResource::collection(Post::all()->load('user', 'dataTutorial.tutorials.dataTutorial.post'));
 
         return response()->json([
