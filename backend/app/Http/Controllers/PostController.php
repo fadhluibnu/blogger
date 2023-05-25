@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $getAllPost = Post::all()->load('user');
+        // return Post::all()->load('user', 'dataTutorial.tutorials.dataTutorial.post');
+        $getAllPost = PostResource::collection(Post::all()->load('user', 'dataTutorial.tutorials.dataTutorial.post'));
 
         return response()->json([
             'status' => 200,
@@ -65,7 +67,8 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        $getPostBySlug = Post::where('slug', $slug)->first();
+        
+        $getPostBySlug = new PostResource(Post::where('slug', $slug)->first()->load('user', 'dataTutorial.tutorials.dataTutorial.post'));
         return $getPostBySlug ? response()->json([
             'status' => 200,
             'message' => 'succes',

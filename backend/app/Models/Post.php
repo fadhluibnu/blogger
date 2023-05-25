@@ -26,6 +26,10 @@ class Post extends Model
     }
     public function dataTutorial()
     {
-        return $this->hasMany(DataTutorial::class, 'id_post');
+        return $this->hasOne(DataTutorial::class, 'id_post');
     }
+    // public function datatutorials()
+    // {
+    //     return $this->belongsToMany(DataTutorial::class, 'data_tutorials', 'id_post');
+    // }
 }
