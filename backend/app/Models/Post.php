@@ -28,8 +28,8 @@ class Post extends Model
     {
         return $this->hasOne(DataTutorial::class, 'id_post');
     }
-    // public function datatutorials()
-    // {
-    //     return $this->belongsToMany(DataTutorial::class, 'data_tutorials', 'id_post');
-    // }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id_category');
+    }
 }
