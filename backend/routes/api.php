@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DataTutorialController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoadmapController;
@@ -39,6 +40,9 @@ Route::get('/tutorial/{slug}', [TutorialController::class, 'show'])->name('getTu
 // get data tutorial
 Route::get('/datatutorial', [DataTutorialController::class, 'index'])->name('getAllDataTutorial');
 
+// get data category
+Route::get('/category', [CategoryController::class, 'index'])->name('getAllCategory');
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -54,6 +58,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // data tutorial roadmap
     Route::resource('/datatutorial', DataTutorialController::class)->except('index', 'show');
+
+    // category controller
+    Route::resource('/category', CategoryController::class)->except('index', 'show');
+
 });
 
 // route 404 not found
