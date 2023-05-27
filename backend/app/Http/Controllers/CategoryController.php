@@ -17,7 +17,12 @@ class CategoryController extends Controller
     public function index()
     {
         // return Category::all()->load('posts');
-        return CategoryResource::collection(Category::all()->load('posts'));
+        $getAllCategory = CategoryResource::collection(Category::all()->load('posts'));
+        
+        return response()->json([
+            'status' => 200,
+            'data' => $getAllCategory->isEmpty() ? null : $getAllCategory
+        ], 200);
     }
 
     /**
