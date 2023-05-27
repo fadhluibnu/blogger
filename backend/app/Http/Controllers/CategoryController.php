@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -87,9 +88,26 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $slug)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('image_category');
+        }
+
+        $getDataCategory = Category::where('slug', $slug)->first();
+        $updateCategory = $getDataCategory ? $getDataCategory->update($validated) : false;
+
+        return $getDataCategory == false ? response()->json([
+            'status' => 404,
+            'message' => 'not found'
+        ], 404) : ($updateCategory ? response()->json([
+            'status' => 200,
+            'message' => 'success'
+        ], 200) : response()->json([
+            'status' => 500,
+            'message' => 'failed'
+        ], 500));
     }
 
     /**
